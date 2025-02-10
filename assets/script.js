@@ -29,6 +29,7 @@ arrow_left.addEventListener("click", () => {
 
 })
 
+
 const arrow_right = document.querySelector(".arrow_right")
 arrow_right.addEventListener("click", () => {
 	arrowRight(index)
