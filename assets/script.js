@@ -16,25 +16,56 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-let index = 1
-const BannerImg = document.querySelector(".banner-img")
+let index = 0
 let Nbrepts = slides.length
+const BannerImg = document.querySelector(".banner-img")
+const dotcontainer = document.querySelector(".dots")
+const TagLine = document.querySelector("#banner p")
+
+
 function arrowRight(index){
+	if (index >= 0 && index < Nbrepts){
 	BannerImg.src = `./assets/images/slideshow/${slides[index].image}`
-	
 }
+TagLine.innerHTML = slides[index].tagLine
+}
+
+function updateDots(index) {
+	const dots = document.querySelectorAll(".dot");
+	dots.forEach((dot, i) => {
+		if (i === index) {
+			dot.classList.add("dot_selected");
+		} else {
+			dot.classList.remove("dot_selected");
+		}
+	});
+}
+
+
 const arrow_left = document.querySelector(".arrow_left")
 arrow_left.addEventListener("click", () => {
-	
-
+	if (index > 0) {
+		index -= 1;
+	}
+	else {
+		index = Nbrepts - 1
+	}
+		arrowRight(index);
+		updateDots(index);
 })
-
 
 const arrow_right = document.querySelector(".arrow_right")
 arrow_right.addEventListener("click", () => {
-	arrowRight(index)
-	index = index + 1
+	if (index < Nbrepts - 1) {
+		index += 1;
+	}
+	else {
+		index = 0
+	}
+	arrowRight(index);
+	updateDots(index);
 })
+
 
 
 
